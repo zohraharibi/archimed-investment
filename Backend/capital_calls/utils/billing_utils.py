@@ -5,7 +5,7 @@ from .inverstor_utils import calculate_amount_invested_per_investor
 
 MEMBERSHIP_FEE_THRESHOLD = 50000
 MEMBERSHIP_FEE = 3000
-APRIL_2019_START_DATE = datetime(2019, 4, 1)
+APRIL_2019_START_DATE = datetime(2019, 4, 1).date()
 
 def calculate_membership_fee(amount_invested):
     if amount_invested > MEMBERSHIP_FEE_THRESHOLD:
@@ -41,23 +41,24 @@ def calculate_yearly_fee_after_2019(amount_invested, fee_percentage, date_of_fir
     
 def calculate_yearly_fee (amount_invested, fee_percentage, date_of_first_investment):
     years_since_investment = date.today().year - date_of_first_investment.year
-    
+    print(date.today().year)
+    print(date_of_first_investment.year)
     if date_of_first_investment > APRIL_2019_START_DATE:
         return calculate_yearly_fee_after_2019(amount_invested, fee_percentage, date_of_first_investment, years_since_investment)
     else:
         return calculate_yearly_fee_before_2019(amount_invested, fee_percentage, date_of_first_investment, years_since_investment)  
 
     
-def calculate_bill(investor, bill, fee_percentage, date_of_first_investment ):
+def calculate_bill(investor, fee_percentage, bill_type):
     amount_invested = calculate_amount_invested_per_investor(investor)
 
-    if bill.bill_type == 'membership':
+    if bill_type == 'membership':
         return calculate_membership_fee(amount_invested)
-    elif bill.bill_type == 'upfront':
+    elif bill_type == 'upfront':
         return calculate_upfront_fee(amount_invested, fee_percentage)
-    elif bill.bill_type == 'yearly':
-        return calculate_yearly_fee(amount_invested, fee_percentage, date_of_first_investment)
+    elif bill_type == 'yearly':
+        return calculate_yearly_fee(amount_invested, fee_percentage, datetime.strptime(investor['date_of_first_investment'].value, '%Y-%m-%d').date() ) 
     else:
-        return 0
+        return -1
 
  
