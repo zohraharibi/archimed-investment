@@ -21,7 +21,6 @@ class InvestorSerializer(serializers.ModelSerializer):
         return data
 
 class CapitalCallSerializer(serializers.ModelSerializer):
-    # investor = InvestorSerializer(many=False)
 
     class Meta:
         model = CapitalCall
