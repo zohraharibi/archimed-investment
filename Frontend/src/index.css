@@ -21,11 +21,6 @@ body {
     border-radius: 5px; 
     margin-top: 20px;
   }
-  
-  .black-button:hover {
-    background-color: black;
-  }
-
 
   .form-group {
     margin-bottom: 15px;
@@ -56,3 +51,7 @@ body {
     font-size: 20px;
     margin-bottom: 10px;
   }
+
+  .light-gray-bg {
+    background-color: #f2f2f2;
+}

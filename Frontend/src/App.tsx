@@ -15,17 +15,16 @@ function App() {
     <Router>
       <Navbar />
         <Routes>
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Article />} />
-          <Route path="/capital-calls/:id" element={<CapitalCallDetail />} /> */}
-          <Route path="/capital-calls" element={<CapitalCallsList />} />
-          <Route path="/capital-calls/create-capital-call" element={<CreateCapitalCallForm/>} />
+          <Route path="/" element={<CapitalCallsList />} />
+          <Route path="/create-capital-call" element={<CreateCapitalCallForm/>} />
+          
           <Route path="/bills" element={<BillsList />} />
           <Route path="/bills/create-bill" element={<CreateBillForm/>} />
+
           <Route path="/investors" element={<InvestorsList />} />
           <Route path="/investors/:id" element={<InvestorDetail />} />
-
           <Route path="/investors/create-investor" element={<CreateInvestorForm/>} />
+          
           <Route path="*" element={<PageNotFound />} />
         </Routes>
     </Router>
