@@ -7,7 +7,7 @@ import CardList from '../Common/CardList/CardList';
 import { getInvestor } from '../../services/InvestorService';
 
 const InvestorDetail: React.FC = () => {
-    const { id } = useParams<{ id: string }>(); // Retrieve the investor ID from URL params
+    const { id } = useParams<{ id: string }>();
 
     const [investor, setInvestor] = useState<Investor>();
 
@@ -24,7 +24,7 @@ const InvestorDetail: React.FC = () => {
         };
 
         fetchInvestor();
-    }, [id]); // Fetch investor details whenever the ID changes
+    }, [id]);
 
     return (
         <>

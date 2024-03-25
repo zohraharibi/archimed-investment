@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createCapitalCall } from '../../services/CapitalCallService';
-import { CapitalCall } from '../../types/CapitalCallInterface';
 import Card from '../Common/Card/Card';
-import { CapitalCallStatus } from '../../types/CapitalCallInterface';
+import { CapitalCallStatus, CapitalCall } from '../../types/CapitalCallInterface';
 import { getInvestors } from '../../services/InvestorService';
 import { Investor } from '../../types/InvestorInterface';
 import { Form, FormFeedback, FormGroup, Input } from 'reactstrap';
@@ -54,9 +53,14 @@ const CreateCapitalCallForm: React.FC = () => {
                 if (!formData.due_date) {
                     validationErrors.due_date = 'Due date is required';
                 }
-                if (!formData.total_amount) {
-                    validationErrors.total_amount = 'total amount is required';
+                else {
+                    const dueDate = new Date(formData.due_date);
+                    const today = new Date();
+                    if (dueDate <= today) {
+                        validationErrors.due_date = 'Due date must be greater than today';
+                    }
                 }
+
                 if (!formData.investor) {
                     validationErrors.investor = 'Investor is required';
                 }
@@ -68,7 +72,12 @@ const CreateCapitalCallForm: React.FC = () => {
                     setErrors(validationErrors);
                     return;
                 }
-                await createCapitalCall(formData as CapitalCall);
+                const capitalCall = ({
+                    ...formData,
+                    total_amount: 0,
+                }) as CapitalCall;
+
+                await createCapitalCall(capitalCall);
                 setSuccessMessage('Capital Call added successfully!');
 
         } catch (error) {
@@ -98,7 +107,7 @@ const CreateCapitalCallForm: React.FC = () => {
                     <FormFeedback><div className='text-danger'>{errors.due_date}</div></FormFeedback>
                 </FormGroup>
 
-                <FormGroup>
+                {/* <FormGroup>
                     <div className='mt-3'>
                         <label htmlFor="total_amount">Total Amount:</label>
                         <Input 
@@ -113,8 +122,8 @@ const CreateCapitalCallForm: React.FC = () => {
                         <div className='text-danger'>
                             {errors.total_amount}
                         </div>
-                    </FormFeedback>
-                </FormGroup>  
+                    </FormFeedback> */}
+                {/* </FormGroup>   */}
                 <FormGroup invalid={!!errors.status}>  
                     <div className='mt-3'>
                         <label htmlFor="status">Status:</label>

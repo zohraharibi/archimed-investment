@@ -35,14 +35,14 @@ const CapitalCallsList: React.FC = () => {
     return (
         <>
             <button className='mx-5 mt-5 validate-button'>
-                <NavLink to="/capital-calls/create-capital-call" className='mx-5 mt-5 validate-button'>
+                <NavLink to="/create-capital-call" className='mx-5 mt-5 validate-button'>
                     Create A New Capital Call
                 </NavLink>
             </button>
             <CardList>
                 {capitalCalls.map((item, index) => (
-                    <Card key={item.id} link={`${item.id}`}>
-                        <img src='../../../public/ARCHIMED_LOGO-.png' width="125" height="125" />
+                    <Card key={item.id}>
+                        <img src='../../../public/ARCHIMED_LOGO-.png' alt='logo' width="125" height="125" />
                         <div className='mx-3'>
                             <div><b>IBAN: </b> {investors[index]?.iban}</div>
                             <div><b>Due Date: </b>{formatDate(item.due_date)}</div>

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {FormGroup, Input, FormFeedback, Form } from 'reactstrap';
 import { Bill, BillType } from '../../types/BillInterface';
-import { createBill } from '../../services/BillService';
+import { calculateBill, calculateTotalAmountPerCapitalCall, createBill } from '../../services/BillService';
 import { Investor } from '../../types/InvestorInterface';
-import { getInvestors } from '../../services/InvestorService';
+import { getInvestor, getInvestors } from '../../services/InvestorService';
 import { CapitalCall } from '../../types/CapitalCallInterface';
-import { getCapitalCalls } from '../../services/CapitalCallService';
+import { getCapitalCall, getCapitalCalls, updateCapitalCall } from '../../services/CapitalCallService';
 import Card from '../Common/Card/Card';
-
-
-
 
 export const CreateBillForm: React.FC = () => {
     const [formData, setFormData] = useState<Partial<Bill>>({});
@@ -19,6 +16,8 @@ export const CreateBillForm: React.FC = () => {
     const [capitalCalls, setCapitalCalls] = useState<CapitalCall[]>([]);
     const [selectedCapitalCallId, setSelectedCapitalCallId] = useState<string>('');
     const [successMessage, setSuccessMessage] = useState<string>('');
+    const [billAmount, setBillAmount] = useState<string>('');
+
     
     useEffect(() => {
         const fetchInvestors = async () => {
@@ -36,7 +35,6 @@ export const CreateBillForm: React.FC = () => {
     }, []);
 
 
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData({
@@ -51,6 +49,7 @@ export const CreateBillForm: React.FC = () => {
         }
     };
 
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -58,9 +57,7 @@ export const CreateBillForm: React.FC = () => {
             setSuccessMessage('');
             
             const validationErrors: { [key: string]: string } = {};
-            if (!formData.amount) {
-                validationErrors.amount = 'Amount is required';
-            }
+
             if (!formData.bill_type) {
                 validationErrors.bill_type = 'Bill type is required';
             }
@@ -75,13 +72,57 @@ export const CreateBillForm: React.FC = () => {
                 setErrors(validationErrors);
                 return;
             }
-            await createBill(formData as Bill);
-            setSuccessMessage('Bill added successfully!');
+
+            try {
+                const investorData = await getInvestor(formData.investor);
+                const {fee_percentage, bill_type } = formData;
+                const parsedFeePercentage = parseInt(String(fee_percentage), 10);
+    
+                const newBill = {
+                    investor: {
+                        id: investorData?.id,
+                        name: investorData?.name,
+                        iban: investorData?.iban,
+                        email: investorData?.email,
+                        date_of_first_investment: investorData?.date_of_first_investment
+                    }, 
+                    fee_percentage: parsedFeePercentage, 
+                    bill_type: bill_type
+                    
+                } as Bill;
+    
+                // Calculate Bill total and create bill
+                const response = await calculateBill(newBill);
+                setBillAmount(response.bill_amount);
+                await createBill({ amount: response.bill_amount, ...formData } as Bill);
+
+                // Calculate and update Capital call total_amount related to bill
+                if(formData.capital_call){
+                    const result = await calculateTotalAmountPerCapitalCall(formData.capital_call);
+                    const totalAmountObject = result[result.length - 1];
+                    const totalAmount= totalAmountObject. total_amount;
+                    const capital_call = await getCapitalCall(formData.capital_call);
+                    const newCapitalCall = {
+                        ...capital_call,
+                        total_amount: totalAmount,
+
+                    } as CapitalCall;
+
+                    await updateCapitalCall(formData.capital_call, newCapitalCall);
+                }
+
+                setSuccessMessage("Bill added successfully!");
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
 
         } catch (error) {
             console.error('Error creating bill:', error);
         }
     };
+
+    
 
     return (
         <div className='mx-5 grid grid-cols-1'>
@@ -90,17 +131,19 @@ export const CreateBillForm: React.FC = () => {
                     <div className='alert alert-success mb-4'>{successMessage}</div>
                 )}
                 <Form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        <label htmlFor="Amount">Amount before calculation</label>
-                        <Input
-                            type="text"
-                            name="amount"
-                            id="amount"
-                            onChange={handleChange}
-                            invalid={!!errors.amount}
-                        />
-                        <FormFeedback><div className='text-danger'>{errors.amount}</div></FormFeedback>
-                    </FormGroup>
+
+                        <FormGroup>
+                            <label htmlFor="Amount">To Pay:</label>
+                            <Input
+                                type="text"
+                                name="amount"
+                                id="amount"
+                                readOnly={true}
+                                value={billAmount}
+                                className='light-gray-bg'
+                            />
+                        </FormGroup>
+                    
                     <FormGroup invalid={!!errors.investor}>
                         <label htmlFor="investor">Investor:</label>
                         <select className='form-control' id="investor" name="investor" value={selectedInvestorId} onChange={handleChange}>

@@ -36,6 +36,8 @@ const InvestorsList: React.FC = () => {
                 </Card>
                 ))}
         </CardList>
+        <p className='mx-10 mt-5 text-sm'>Click on investor to get the list of all his bills</p>
+
       </>
   
 

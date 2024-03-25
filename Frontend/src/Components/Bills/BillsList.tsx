@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom'; // Import useHistory hook
+import { NavLink } from 'react-router-dom';
 import { getBills } from '../../services/BillService';
 import Card from '../Common/Card/Card';
 import { Bill } from '../../types/BillInterface';
@@ -27,7 +27,7 @@ const BillsList: React.FC = () => {
             </button>
             <CardList>
                 {bills.map((item) => (
-                    <Card key={item.id} link={`${item.id}`}>
+                    <Card key={item.id}>
                         <div><b>Amount to Pay: </b> {item.amount} Euros </div>
                         <div><b>Fee Applied: </b> {item.fee_percentage} % </div>
                         <div><b>Type: </b>{item.bill_type} </div>
