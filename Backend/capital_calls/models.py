@@ -14,7 +14,6 @@ class Investor(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        # Remove spaces from the IBAN before saving
         self.iban = self.iban.replace(' ', '')
         super().save(*args, **kwargs)
 

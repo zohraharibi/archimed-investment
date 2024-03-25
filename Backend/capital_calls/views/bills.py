@@ -17,7 +17,7 @@ class BillRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BillSerializer
 
 class CalculateBillView(APIView):
-    def get(self, request):
+    def post(self, request):
         investor = InvestorSerializer(request.data.get('investor'))
         fee_percentage = request.data.get('fee_percentage')
         bill_type = request.data.get('bill_type')
