@@ -21,7 +21,14 @@
         <li><a href="#frontend">Frontend</a></li>
       </ul>
     </li>
-    <li><a href="#demo">Demo</a></li>
+    <li>
+      <a href="#demo">Demo</a>
+        <ul>
+        <li><a href="#investors">Investors</a></li>
+        <li><a href="#bills">Bills</a></li>
+        <li><a href="#capital-calls">Capital Calls</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -61,31 +68,31 @@ After cloning your project you can follow the upcoming steps for the frontend an
 
 ### Backend
   
-*You should navigate into the project directory using the cd command:
+* You should navigate into the project directory using the cd command:
   ```sh
   cd /Backend
   ```
-*Install Dependencies:
+* Install Dependencies:
 Since this project uses pipenv, you need to install dependencies specified in the Pipfile.lock file. you can do this by running:
 
 ```sh
 pipenv install
 ```
 
-*Activate the Virtual Environment:
+* Activate the Virtual Environment:
 After installing dependencies, you need to activate the project's virtual environment. This ensures that the installed dependencies are isolated from other projects. you can activate the virtual environment by running:
 
 ``` sh 
 pipenv shell
 ```
 
-*Run Migrations:
+* Run Migrations:
 Before running the Django project, you should apply migrations to set up the database. you can do this by running:
 
 ``` sh 
 python manage.py migrate
 ```
-*Run the Development Server:
+* Run the Development Server:
 Finally, you can run the Django development server to start the application. you can do this by running:
 
 ``` sh 
@@ -95,21 +102,21 @@ This command will start the development server, and you can access the applicati
 
 ### Frontend
 
-*Navigate to Project Directory: Open a terminal or command prompt and navigate to the directory where the React project is located using the cd command.
+* Navigate to Project Directory: Open a terminal or command prompt and navigate to the directory where the React project is located using the cd command.
 ```sh 
 cd /Frontend
 ```
-*Install Dependencies: Run the following command to install the project dependencies listed in package.json:
+* Install Dependencies: Run the following command to install the project dependencies listed in package.json:
 
 ```sh
 npm install
 ```
-Start the Development Server: After installing the dependencies, start the development server using the following command:
+* Start the Development Server: After installing the dependencies, start the development server using the following command:
 
 ```sh
 npm run dev
 ```
-Access the Application: Once the server is started, you can access the React application by opening a web browser and navigating to the URL provided by the development server, you will find the URL provided in the terminal.
+* Access the Application: Once the server is started, you can access the React application by opening a web browser and navigating to the URL provided by the development server, you will find the URL provided in the terminal.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -123,7 +130,7 @@ In this section I will share with you some screenshots with a description of the
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<h3>Investor</h3>
+### Investors
 
 
 * List of Investors:
@@ -174,14 +181,14 @@ In order to add an investor we need to keep in mind that there are form validati
 
 
 
-<h3>Bill</h3>
+### Bills
 
 
 ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/4b55fab6-f00c-4ec7-af18-1d488e7965ad)
 ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/6feb9f59-4120-4836-9bd8-0a07b12fe15c)
 
 
-<h3>Capital Call</h3>
+### Capital Calls
 
 
 
