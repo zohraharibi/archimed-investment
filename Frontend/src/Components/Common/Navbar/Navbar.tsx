@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
             <li>
               <NavLink
                 className="text-white hover:text-secondary hover:scale-110 transition-all duration-300"
-                to="/capital-calls"
+                to="/"
               >
                 Capital Calls
               </NavLink>

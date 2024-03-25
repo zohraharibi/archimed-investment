@@ -23,7 +23,7 @@ const PageNotFound: React.FC = () => {
             />
           </svg>
         </div>
-        <Link to="/capital-calls" className="text-lg text-secondary hover:underline">
+        <Link to="/" className="text-lg text-secondary hover:underline">
           Go back to Capital Calls
         </Link>
       </div>
