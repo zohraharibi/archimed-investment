@@ -11,8 +11,13 @@ export enum BillType {
 export interface Bill {
     id: number;
     capital_call: CapitalCall | null;
-    investor: Investor;
-    bill_type: BillType;
-    amount: number;
-    fee_percentage: number;
+    investor: Investor | undefined;
+    bill_type: BillType | undefined;
+    amount: number | undefined;
+    fee_percentage: number | undefined;
   }
+
+export interface BillAmountResponse {
+    bill_amount: string;
+  }
+    
