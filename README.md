@@ -183,15 +183,46 @@ In order to add an investor we need to keep in mind that there are form validati
 
 ### Bills
 
+A bill has also a form validation both from the frontend and the backend.
+
+1. All fields except for capital call are required
+2. The amount is not typed by the user but it’s calculated using the other fields, it is in a read-only mode
+3. And all the rules to calculate a bill are applied as in the business case
+* If an investor has invested more than 50000 euros than membership bill amount is 0. Otherwise it’s 3000. For this business case, I have calculated the amount invested by a user by calculating the sum amount of all the capital calls only if they are paid.
+  For example here this is the first bill for Ronald and it's membership so the amount is 3000 euros
+
+  ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/f1909e04-e78f-4427-a587-f4ffd94708d6)
+
+For Zohra Haribi, she has invested a lot with us so if we add a membership bill for her it's going to be 0
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/99ef078f-1c80-4931-82d2-ab65f1d89af9)
+
+
+This is an example of the other calculations for bill
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/7a97f633-3ee3-431e-837d-d048e46f654b)
+
+
+
+* A bill doesn’t necessarily belong to a capital call, but once we assign a capital call to it, the total amount of that capital call gets updated by summing up all the bill amounts of that capital call. Initially while creating a capital call we set the total_amount to 0 because it doesn’t have any bill related to it at the moment of creation.
+
+With that said let’s move on to capital calls.
+
 
 ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/4b55fab6-f00c-4ec7-af18-1d488e7965ad)
 ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/6feb9f59-4120-4836-9bd8-0a07b12fe15c)
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/a3750c08-5bf0-4dbd-b119-4d3635429340)
+
 
 
 ### Capital Calls
 
 
+A capital call belongs to one investor and can have many bills. As said previously, the total amount is calculated each time we add assign a bill to a capital call.
+A capital call form needs to be validated also from the frontend and backend
+All fields are required and the due_date should be greater than today. Because we cannot assign a capital call now to an investor and want him to pay in the past
 
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/09c14621-9401-4572-8a11-2139c8febe08)
 
 
 
