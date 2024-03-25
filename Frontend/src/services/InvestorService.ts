@@ -8,7 +8,7 @@ export const getInvestors = async (): Promise<Investor[]> => {
   return response.data;
 };
 
-export const getInvestor = async (id: number): Promise<Investor> => {
+export const getInvestor = async (id: any): Promise<Investor> => {
   const response = await axios.get(`${API_URL}/${id}/details`);
   return response.data;
 };

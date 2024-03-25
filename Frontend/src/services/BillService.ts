@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Bill } from '../types/BillInterface';
+import { Bill, BillAmountResponse } from '../types/BillInterface';
 import { CapitalCall } from '../types/CapitalCallInterface';
 
 const BASE_URL = 'http://localhost:8000/api/bills/';
@@ -37,3 +37,17 @@ export const getBillsByInvestor = async (id: number): Promise<Bill[]> => {
     const response = await axios.get(`${BASE_URL}?capital_call=${capitalCall.id}`);
     return response.data;
   };
+
+  export const calculateBill = async (bill: Bill): Promise<BillAmountResponse> => {
+    const response = await axios.post<BillAmountResponse>(`${BASE_URL}calculate-bill/`, bill);
+    return response.data;
+  };
+
+  export const calculateTotalAmountPerCapitalCall = async (capital_call_id: any): Promise<any> => {
+    //This service allows you to sum up all the bill amounts associated with a capital call and returns the total_amount
+    const response = await axios.get(`${BASE_URL}calculate-bill/${capital_call_id}`);
+    return response.data;
+  };
+
+
+

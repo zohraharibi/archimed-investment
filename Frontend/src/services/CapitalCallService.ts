@@ -9,7 +9,7 @@ export const getCapitalCalls = async (): Promise<CapitalCall[]> => {
   return response.data;
 };
 
-export const getCapitalCall = async (id: number): Promise<CapitalCall> => {
+export const getCapitalCall = async (id: any): Promise<CapitalCall> => {
   const response = await axios.get(`${API_URL}/${id}/`);
   return response.data;
 };
@@ -19,7 +19,7 @@ export const createCapitalCall = async (capitalCall: CapitalCall): Promise<Capit
   return response.data;
 };
 
-export const updateCapitalCall = async (id: number, capitalCall: CapitalCall): Promise<CapitalCall> => {
+export const updateCapitalCall = async (id: any, capitalCall: CapitalCall): Promise<CapitalCall> => {
   const response = await axios.put(`${API_URL}/${id}/`, capitalCall);
   return response.data;
 };
@@ -32,4 +32,5 @@ export const getInvestorByCapitalCall = async (id: number): Promise<Investor> =>
   const response = await axios.get(`${API_URL}/${id}/investor`);
   return response.data;
 };
+
 
