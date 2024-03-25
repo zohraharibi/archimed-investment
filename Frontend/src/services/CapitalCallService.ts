@@ -1,8 +1,10 @@
 import axios from "axios";
 import { CapitalCall } from "../types/CapitalCallInterface";
 import { Investor } from "../types/InvestorInterface";
+import { BASE_URL } from "../types/variables";
 
-const API_URL = "http://localhost:8000/api/capital-calls";
+const API_URL = `${BASE_URL}/api/capital-calls`;
+
 
 export const getCapitalCalls = async (): Promise<CapitalCall[]> => {
   const response = await axios.get(`${API_URL}`);
