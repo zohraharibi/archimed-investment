@@ -226,6 +226,32 @@ All fields are required and the due_date should be greater than today. Because w
 ![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/09c14621-9401-4572-8a11-2139c8febe08)
 
 
+As said previously, the total amount is calculated each time we add assign a bill to a capital call.
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/9da3d63e-bd0e-44fc-8647-a6cf45952c25)
+
+ Initially while creating it total_amount is 0. As you can see the last one is 0.
+ 
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/d1fd1c3b-6581-48e5-ab90-16d13bc37d98)
+
+Now if I create a bill and assign it to this capital call, then the total_amount for a capital call would change. for this capital call, I am going to add a new bill
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/df1bf35f-407d-449a-8d7d-22cce30bd170)
+
+and this is the added bill
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/62f646cb-4cc1-4eae-bdea-6b5f04b2b88c)
+
+and here how it got updated
+
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/8a0324cc-944b-4bab-8ed4-49ae428eb3f1)
+
+
+Thank you so much for your patience, and for reading my work. Your efforts are highly appreciated.
+
+
+
+
 
 
 
