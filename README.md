@@ -187,6 +187,9 @@ A bill has also a form validation both from the frontend and the backend.
 
 1. All fields except for capital call are required
 2. The amount is not typed by the user but it’s calculated using the other fields, it is in a read-only mode
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/4b55fab6-f00c-4ec7-af18-1d488e7965ad)
+![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/a3750c08-5bf0-4dbd-b119-4d3635429340)
+
 3. And all the rules to calculate a bill are applied as in the business case
 * If an investor has invested more than 50000 euros than membership bill amount is 0. Otherwise it’s 3000. For this business case, I have calculated the amount invested by a user by calculating the sum amount of all the capital calls only if they are paid.
   For example here this is the first bill for Ronald and it's membership so the amount is 3000 euros
@@ -209,9 +212,7 @@ This is an example of the other calculations for bill
 With that said let’s move on to capital calls.
 
 
-![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/4b55fab6-f00c-4ec7-af18-1d488e7965ad)
-![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/6feb9f59-4120-4836-9bd8-0a07b12fe15c)
-![image](https://github.com/zohraharibi/archimed-investment/assets/162974399/a3750c08-5bf0-4dbd-b119-4d3635429340)
+
 
 
 
